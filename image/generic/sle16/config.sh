@@ -61,6 +61,7 @@ suseInsertService haveged
 # Activate migration services
 #--------------------------------------
 suseInsertService suse-migration-mount-system
+suseInsertService suse-migration-apparmor-selinux
 suseInsertService suse-migration-post-mount-system
 suseInsertService suse-migration-ssh-keys
 suseInsertService suse-migration-pre-checks
