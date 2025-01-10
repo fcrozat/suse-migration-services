@@ -1,0 +1,11 @@
+[Unit]
+Description=Wicked to NetworkManager migration
+After=suse-migration.service
+Before=suse-migration-regenerate-inird
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/suse-migration-wicked-networkmanager
+
+[Install]
+WantedBy=multi-user.target
