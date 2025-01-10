@@ -73,6 +73,7 @@ suseInsertService suse-migration-update-bootloader
 suseInsertService suse-migration-product-setup
 suseInsertService suse-migration-regenerate-initrd
 suseInsertService suse-migration-kernel-load
+suseInsertService suse-migration-wicked-networkmanager
 #suseInsertService suse-migration-reboot
 suseInsertService NetworkManager
 mkdir -p /etc/sysconfig/network/providers
