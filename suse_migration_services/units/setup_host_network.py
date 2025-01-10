@@ -89,25 +89,26 @@ def main():
             )
         else:
             log.info('Empty {0}, copying /etc/resolv.conf to {0}'.format(resolv_conf))
+            # ensure resolv.conf won't be a symlink on migrated system            
             if os.path.islink(resolv_conf):
                os.remove(resolv_conf)
             shutil.copy(
                 '/etc/resolv.conf', resolv_conf
             )
-#            log.info('Empty {0}, bind mounting /etc/resolv.conf to {0}'.format(resolv_conf))
-#            if os.path.islink(resolv_conf):
-#                os.remove(resolv_conf)
-#                open(resolv_conf,'w').close()
-#
-#            Command.run(
-#                [
-#                    'mount', '--bind', '/etc/resolv.conf',
-#                    resolv_conf
-#                ]
-#            )
-#            system_mount.add_entry(
-#                '/etc/resolv.conf', resolv_conf
-#            )
+            log.info('Empty {0}, bind mounting /etc/resolv.conf to {0}'.format(resolv_conf))
+            if os.path.islink(resolv_conf):
+                os.remove(resolv_conf)
+                open(resolv_conf,'w').close()
+
+            Command.run(
+                [
+                    'mount', '--bind', '/etc/resolv.conf',
+                    resolv_conf
+                ]
+            )
+            system_mount.add_entry(
+                '/etc/resolv.conf', resolv_conf
+            )
         system_mount.export(
             Defaults.get_system_mount_info_file()
         )
