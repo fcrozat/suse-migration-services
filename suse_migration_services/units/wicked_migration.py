@@ -50,6 +50,14 @@ def main():
             ]
         )
 
+        log.info('Disable wicked service completely')
+        Command.run(
+            [
+                'systemctl', '--root', root_path, 'mask',
+                'wicked.service'
+            ]
+        )
+
     except Exception as issue:
         message = 'wicked to NetworkManager migration failed with {0}'.format(issue)
         log.error(message)
