@@ -139,3 +139,9 @@ class DistMigrationSystemNotRegisteredException(DistMigrationException):
     """
     Exception raised if the system is not registered
     """
+
+
+class DistMigrationBtrfsSnapshotPreMigrationException(DistMigrationException):
+    """
+    Exception raised if Btrfs snapshot pre-migration fails
+    """
