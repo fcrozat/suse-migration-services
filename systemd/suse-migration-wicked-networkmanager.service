@@ -1,7 +1,8 @@
 [Unit]
 Description=Wicked to NetworkManager migration
 After=suse-migration.service
-Before=suse-migration-regenerate-inird
+Requisite=suse-migration.service
+Before=suse-migration-regenerate-inird.service
 
 [Service]
 Type=oneshot
