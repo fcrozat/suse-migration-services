@@ -25,9 +25,9 @@
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/home/migration" name="migration" groups="users"/>
     </users>
-    <!--    <repository type="rpm-md" >
+    <repository type="rpm-md" >
         <source path='obsrepositories:/'/>
-    </repository>-->
+    </repository>
     <repository type="rpm-md">
 	    <source path="http://download.suse.de/ibs/SUSE:/SLFO:/Products:/SLES:/16.0/product/repo/SLES-Packages-16.0-x86_64"/>
     </repository>
