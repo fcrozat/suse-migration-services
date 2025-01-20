@@ -63,6 +63,7 @@ suseInsertService haveged
 suseInsertService suse-migration-mount-system
 suseInsertService suse-migration-apparmor-selinux
 suseInsertService suse-migration-post-mount-system
+suseInsertService suse-migration-btrfs-snapshot-pre-migration
 suseInsertService suse-migration-ssh-keys
 suseInsertService suse-migration-pre-checks
 suseInsertService suse-migration-setup-host-network
