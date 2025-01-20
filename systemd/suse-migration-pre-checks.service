@@ -1,7 +1,7 @@
 [Unit]
 Description=Run suse-migration-pre-checks before starting the migration
 After=suse-migration-mount-system.service suse-migration-ssh-keys.service
-Requires=suse-migration-mount-system.service suse-migration-ssh-keys.service
+Requisite=suse-migration-mount-system.service suse-migration-ssh-keys.service
 
 [Service]
 Type=oneshot
