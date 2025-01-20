@@ -6,6 +6,7 @@ Requisite=suse-migration-product-setup.service
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/suse-migration
+RemainAfterExit=true
 
 [Install]
 WantedBy=multi-user.target
