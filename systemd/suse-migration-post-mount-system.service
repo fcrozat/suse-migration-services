@@ -6,6 +6,7 @@ Requisite=suse-migration-mount-system.service
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/suse-migration-post-mount-system
+RemainAfterExit=true
 
 [Install]
 WantedBy=multi-user.target

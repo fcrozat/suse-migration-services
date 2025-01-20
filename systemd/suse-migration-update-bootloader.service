@@ -6,6 +6,7 @@ Requisite=suse-migration-grub-setup.service
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/suse-migration-update-bootloader
+RemainAfterExit=true
 
 [Install]
 WantedBy=multi-user.target

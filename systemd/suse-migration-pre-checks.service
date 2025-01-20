@@ -7,6 +7,7 @@ Requisite=suse-migration-mount-system.service suse-migration-ssh-keys.service
 Type=oneshot
 Environment="SUSE_MIGRATION_PRE_CHECKS_MODE=migration_system_iso_image"
 ExecStart=/usr/bin/suse-migration-pre-checks --fix
+RemainAfterExit=true
 
 [Install]
 WantedBy=multi-user.target

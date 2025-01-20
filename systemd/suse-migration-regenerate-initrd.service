@@ -5,6 +5,7 @@ After=suse-migration-grub-setup.service
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/suse-migration-regenerate-initrd
+RemainAfterExit=true
 
 [Install]
 WantedBy=multi-user.target
