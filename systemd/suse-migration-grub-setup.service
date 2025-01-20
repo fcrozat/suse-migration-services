@@ -6,6 +6,7 @@ Requisite=suse-migration.service
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/suse-migration-grub-setup
+RemainAfterExit=true
 
 [Install]
 WantedBy=multi-user.target
