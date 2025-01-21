@@ -29,6 +29,7 @@ config = {
             'suse-migration-ssh-keys=suse_migration_services.units.ssh_keys:main',
             'suse-migration-setup-host-network=suse_migration_services.units.setup_host_network:main',
             'suse-migration-btrfs-snapshot-pre-migration=suse_migration_services.units.btrfs_snapshot_pre_migration:main',
+            'suse-migration-btrfs-snapshot-post-migration=suse_migration_services.units.btrfs_snapshot_post_migration:main',
             'suse-migration-prepare=suse_migration_services.units.prepare:main',
             'suse-migration=suse_migration_services.units.migrate:main',
             'suse-migration-wicked-networkmanager=suse_migration_services.units.wicked_migration:main',
