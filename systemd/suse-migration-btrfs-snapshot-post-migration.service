@@ -1,0 +1,13 @@
+[Unit]
+Description=Snapper btrfs snapshot after migration
+After=suse-migration.service
+Requisite=suse-migration.service
+Before=suse-migration-grub-setup.service
+ConditionPathExist=/run/suse_migration_snapper_btrfs_post_snapshot_number
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/suse-migration-btrfs-snapshot-post-migration
+
+[Install]
+WantedBy=multi-user.target

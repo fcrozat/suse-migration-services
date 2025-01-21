@@ -53,12 +53,15 @@ def main():
             return
         
         # Create a new backup before any changes
-        Command.run(
+        snapper_call = Command.run(
            [
                'chroot', root_path, 'snapper', '--no-dbus',
-               'create', '-d', 'migration_pre_snapshot'
+               'create', '--type', 'pre', '--cleanup-algorithm', 'number', '--print-number', '--userdata', '--important=yes', '--description', 'before offline migration'
            ]
-       )        
+        )
+        if snapper_call.returncode == 0:
+            with open('/run/suse_migration_snapper_btrfs_pre_snapshot_number', 'w') as pre_snapshot_number:
+                pre_snapshot_number.write('{}'.format(snapper_call.output))
 
     except Exception as issue:
         log.error(
