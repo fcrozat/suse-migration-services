@@ -8,6 +8,7 @@ ConditionPathExist=/run/suse_migration_snapper_btrfs_post_snapshot_number
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/suse-migration-btrfs-snapshot-post-migration
+RemainAfterExit=true
 
 [Install]
 WantedBy=multi-user.target
