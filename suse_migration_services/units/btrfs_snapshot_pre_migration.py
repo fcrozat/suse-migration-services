@@ -56,7 +56,7 @@ def main():
         snapper_call = Command.run(
            [
                'chroot', root_path, 'snapper', '--no-dbus',
-               'create', '--type', 'pre', '--cleanup-algorithm', 'number', '--print-number', '--userdata', '--important=yes', '--description', 'before offline migration'
+               'create', '--type', 'pre', '--cleanup-algorithm', 'number', '--print-number', '--userdata', 'important=yes', '--description', 'before offline migration'
            ]
         )
         if snapper_call.returncode == 0:

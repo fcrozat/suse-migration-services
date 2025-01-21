@@ -39,7 +39,7 @@ def main():
 
     try:
         with open('/run/suse_migration_snapper_btrfs_pre_snapshot_number', 'r') as pre_snapshot_number_file:
-            pre_snapshot_number = pre_snapshot_number_file.read()
+            pre_snapshot_number = pre_snapshot_number_file.read().strip()
             if not pre_snapshot_number.isdigit():
                 log.error('Invalid snapshot number read from file.')
                 raise ValueError('Invalid snapshot number read from file.')
@@ -47,7 +47,7 @@ def main():
         snapper_call = Command.run(
            [
                'chroot', root_path, 'snapper', '--no-dbus',
-               'create', '--type', 'post', '--pre-number', pre_snapshot_number, '--cleanup-algorithm', 'number', '--print-number', '--userdata', '--important=yes', '--description', 'after offline migration'
+               'create', '--type', 'post', '--pre-number', pre_snapshot_number, '--cleanup-algorithm', 'number', '--print-number', '--userdata', 'important=yes', '--description', 'after offline migration'
            ]
         )
         log.info('BTRFS post-migration snapshot creation completed successfully.')
