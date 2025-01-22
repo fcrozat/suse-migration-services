@@ -17,6 +17,7 @@
 #
 
 import logging
+import os
 
 # project
 from suse_migration_services.defaults import Defaults
@@ -40,6 +41,14 @@ def main():
     root_path = Defaults.get_system_root_path()
 
     try:
+        # we want pre snapshot to be before we installed migration-activation package, if it was installed
+        pre_migration_activation_package_snapshot_number = 0
+        try:
+            with open(os.sep.join([root_path, "/var/cache/suse_migration_snapper_btrfs_pre_snapshot_number"]), "r") as file:
+                pre_migration_activation_package_snapshot_number = file.read().strip()
+        except IOError:
+            pass
+
         # Note: The btrfs snapshot will be created before the mount system setup
         # in order to avoid any potential issues with the new filesystem layout while
         # the migration process proceeds.
@@ -48,20 +57,22 @@ def main():
                 [
                 'chroot', root_path, 'snapper', '--no-dbus','get-config'
                 ], raise_on_error=False
-            )
+        )
         if snapper_enabled.returncode != 0:
             return
-        
+
         # Create a new backup before any changes
         snapper_call = Command.run(
-           [
-               'chroot', root_path, 'snapper', '--no-dbus',
-               'create', '--type', 'pre', '--cleanup-algorithm', 'number', '--print-number', '--userdata', 'important=yes', '--description', 'before offline migration'
-           ]
+            [
+                'chroot', root_path, 'snapper', '--no-dbus',
+                'create', '--from', pre_migration_activation_package_snapshot_number, '--read-only', '--type', 'single', '--cleanup-algorithm', 'number', '--print-number', '--userdata', 'important=yes', '--description', 'before offline migration'
+            ]
         )
         if snapper_call.returncode == 0:
-            with open('/run/suse_migration_snapper_btrfs_pre_snapshot_number', 'w') as pre_snapshot_number:
-                pre_snapshot_number.write('{}'.format(snapper_call.output))
+            pre_snapshot_number = '{}'.format(snapper_call.output)
+
+            with open('/run/suse_migration_snapper_btrfs_pre_snapshot_number', 'w') as pre_snapshot_number_file:
+                pre_snapshot_number_file.write(pre_snapshot_number)
 
     except Exception as issue:
         log.error(

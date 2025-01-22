@@ -47,7 +47,7 @@ def main():
         snapper_call = Command.run(
            [
                'chroot', root_path, 'snapper', '--no-dbus',
-               'create', '--type', 'post', '--pre-number', pre_snapshot_number, '--cleanup-algorithm', 'number', '--print-number', '--userdata', 'important=yes', '--description', 'after offline migration'
+               'create', '--type', 'single', '--read-only', '--cleanup-algorithm', 'number', '--print-number', '--userdata', 'important=yes', '--description', 'after offline migration'
            ]
         )
         log.info('BTRFS post-migration snapshot creation completed successfully.')
