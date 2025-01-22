@@ -13,7 +13,7 @@
 	    <type image="iso" primary="true" flags="overlay" firmware="uefi" >
 		    <bootloader name="grub2" timeout="1"/>
 	    </type>
-        <version>0.0.1</version>
+        <version>2.1.7</version>
         <packagemanager>zypper</packagemanager>
         <locale>en_US</locale>
         <keytable>us</keytable>
@@ -29,13 +29,7 @@
         <source path='obsrepositories:/'/>
     </repository>
     <repository type="rpm-md">
-	    <source path="http://download.suse.de/ibs/SUSE:/SLFO:/Products:/SLES:/16.0/product/repo/SLES-Packages-16.0-x86_64"/>
-    </repository>
-    <repository type="rpm-md">
-	    <source path="http://download.suse.de/ibs/home:/fcrozat:/SLES16/SLFO_Main"/>
-    </repository>
-    <repository type="rpm-md">
-	    <source path="http://download.suse.de/ibs/SUSE:/SLFO:/Main:/Build/standard"/>
+	 <source path="obs://SUSE:SLFO:Products:/SLES:/16.0/product"/>
     </repository>
     <packages type="image">
         <package name="patterns-base-minimal_base"/>
@@ -71,6 +65,16 @@
         <package name="dialog"/>
         <package name="sudo"/>
         <package name="mdadm"/>
+        <!-- support for migration of suse public cloud on demand images -->
+        <package name="cloud-regionsrv-client"/>
+        <package name="cloud-regionsrv-client-generic-config"/>
+        <package name="cloud-regionsrv-client-addon-azure"/>
+        <package name="cloud-regionsrv-client-plugin-azure"/>
+        <package name="cloud-regionsrv-client-plugin-ec2"/>
+        <package name="cloud-regionsrv-client-plugin-gce"/>
+        <package name="python3-gcemetadata"/>
+        <package name="python3-ec2metadata"/>
+        <package name="python3-azuremetadata"/>
         <package name="shadow"/>
     </packages>
     <packages type="bootstrap">
