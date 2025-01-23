@@ -52,10 +52,6 @@ def main():
     resolv_conf = os.sep.join(
         [root_path, 'etc', 'resolv.conf']
     )
-#    if not os.path.exists(resolv_conf):
-#        raise DistMigrationNameResolverException(
-#            'Could not find {0} on migration host'.format(resolv_conf)
-#        )
     sysconfig_network_providers = os.sep.join(
         [root_path, 'etc', 'sysconfig', 'network', 'providers']
     )
@@ -88,18 +84,11 @@ def main():
                 resolv_conf, '/etc/resolv.conf'
             )
         else:
-            log.info('Empty {0}, copying /etc/resolv.conf to {0}'.format(resolv_conf))
-            # ensure resolv.conf won't be a symlink on migrated system            
-            if os.path.islink(resolv_conf):
-               os.remove(resolv_conf)
-            shutil.copy(
-                '/etc/resolv.conf', resolv_conf
-            )
             log.info('Empty {0}, bind mounting /etc/resolv.conf to {0}'.format(resolv_conf))
+            # ensure resolv.conf won't be a symlink on migrated system, create an empty file instead to allow bind mount
             if os.path.islink(resolv_conf):
-                os.remove(resolv_conf)
+                os.replace(resolv_conf,'resolv.conf.pre-migration')
                 open(resolv_conf,'w').close()
-
             Command.run(
                 [
                     'mount', '--bind', '/etc/resolv.conf',
